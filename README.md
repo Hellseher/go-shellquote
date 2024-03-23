@@ -17,23 +17,28 @@ See:
 
 ## PACKAGE
 
+``` 
 package shellquote
     import "github.com/Hellseher/go-shellquote"
 
     Shellquote provides utilities for joining/splitting strings using sh's
     word-splitting rules.
+``` 
 
 ## VARIABLES
 
+``` 
 var (
-    UnterminatedSingleQuoteError = errors.New("Unterminated single-quoted string")
-    UnterminatedDoubleQuoteError = errors.New("Unterminated double-quoted string")
-    UnterminatedEscapeError      = errors.New("Unterminated backslash-escape")
+    ErrUnterminatedSingleQuote = errors.New("Unterminated single-quoted string")
+    ErrUnterminatedDoubleQuote = errors.New("Unterminated double-quoted string")
+    ErrUnterminatedEscape      = errors.New("Unterminated backslash-escape")
 )
+``` 
 
 
 ## FUNCTIONS
 
+``` 
 func Join(args ...string) string
     Join quotes each argument and joins them with a space. If passed to
     /bin/sh, the resulting string will be split back into the original
@@ -47,7 +52,6 @@ func Split(input string) (words []string, err error)
     expansion, or pathname expansion.
 
     If the given input has an unterminated quoted string or ends in a
-    backslash-escape, one of UnterminatedSingleQuoteError,
-    UnterminatedDoubleQuoteError, or UnterminatedEscapeError is returned.
-
-
+    backslash-escape, one of ErrUnterminatedSingleQuote,
+    ErrUnterminatedDoubleQuote, or ErrUnterminatedEscape is returned.
+``` 

@@ -1,6 +1,7 @@
 package shellquote
 
 import (
+	"errors"
 	"reflect"
 	"testing"
 )
@@ -19,7 +20,7 @@ func TestSimpleSplit(t *testing.T) {
 func TestErrorSplit(t *testing.T) {
 	for _, elem := range errorSplitTest {
 		_, err := Split(elem.input)
-		if err != elem.error {
+		if !errors.Is(err, elem.error) {
 			t.Errorf("Input %q, got error %#v, expected error %#v", elem.input, err, elem.error)
 		}
 	}
@@ -47,9 +48,9 @@ var errorSplitTest = []struct {
 	input string
 	error error
 }{
-	{"don't worry", UnterminatedSingleQuoteError},
-	{"'test'\\''ing", UnterminatedSingleQuoteError},
-	{"\"foo'bar", UnterminatedDoubleQuoteError},
-	{"foo\\", UnterminatedEscapeError},
-	{"   \\", UnterminatedEscapeError},
+	{"don't worry", ErrUnterminatedSingleQuote},
+	{"'test'\\''ing", ErrUnterminatedSingleQuote},
+	{"\"foo'bar", ErrUnterminatedDoubleQuote},
+	{"foo\\", ErrUnterminatedEscape},
+	{"   \\", ErrUnterminatedEscape},
 }

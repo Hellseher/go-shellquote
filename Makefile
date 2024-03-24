@@ -18,6 +18,12 @@ lint: build-check
 	$(info Run non destructive lint over codebase $(PWD))
 	docker run --volume $(PWD):/tmp/build/:ro $(PROJECT_NAME):check $(LINT)
 
+.PHONY: lint-fix
+## Run non destructive lint over code base.
+lint-fix: build-check
+	$(info Run non destructive lint over codebase $(PWD))
+	docker run --volume $(PWD):/tmp/build/:ro $(PROJECT_NAME):check $(LINT_FIX)
+
 .PHONY: test
 ## Run all available test suites.
 test: test-unit test-integration test-smoke

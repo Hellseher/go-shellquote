@@ -1,5 +1,7 @@
 # go-shellquote 
 
+[![ci](https://github.com/Hellseher/go-shellquote/actions/workflows/ci.yml/badge.svg)](https://github.com/Hellseher/go-shellquote/actions/workflows/ci.yml)
+
 This is a clone of the no longer maintaind project
 [go-shellquote](https://github.com/kballard/go-shellquote), name is kept the
 same, but import path is altered.
